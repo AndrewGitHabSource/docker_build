@@ -1,7 +1,7 @@
 version: "3.7"
 
 networks:
-  skeleton-docker.network:
+  network:
     driver: bridge
 
 services:
@@ -9,11 +9,11 @@ services:
     build: ./docker/php
     restart: always
     tty: true
-    container_name: skeleton-docker.php
+    container_name: php
     depends_on:
       - mysql
     networks:
-      - skeleton-docker.network
+      - network
     ports:
       - "9000:9000"
     volumes:
@@ -21,7 +21,7 @@ services:
 
   nginx:
     build: ./docker/nginx
-    container_name: skeleton-docker.nginx
+    container_name: nginx
     restart: always
     tty: true
     depends_on:
@@ -33,7 +33,7 @@ services:
     volumes:
       - .:/var/www/app.dev
     networks:
-      - skeleton-docker.network
+      - network
 
   mysql:
     build: ./docker/mysql
@@ -41,7 +41,7 @@ services:
     restart: always
     container_name: mysql
     networks:
-      - skeleton-docker.network
+      - network
     ports:
       - "3306:3306"
     volumes:
@@ -66,7 +66,7 @@ services:
     depends_on:
       - mysql
     networks:
-      - skeleton-docker.network
+      - network
 
   frontend:
     image: node:current-alpine
@@ -78,7 +78,7 @@ services:
       NODE_ENV: development
     command: sh -c "npm install && npm run dev"
     networks:
-      - skeleton-docker.network
+      - network
     ports:
       - "3331:3331"
     tty: true
