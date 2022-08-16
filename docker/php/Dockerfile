@@ -1,5 +1,4 @@
 FROM php:8-fpm-alpine
-LABEL MAINTAINER="Vagner Cardoso <vagnercardosoweb@gmail.com>"
 
 # Environments
 ENV TZ=America/Sao_Paulo

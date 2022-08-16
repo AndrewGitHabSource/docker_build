@@ -76,7 +76,7 @@ services:
       - ./public_html:/home/node/app
     environment:
       NODE_ENV: development
-    command: "npm run dev"
+    command: sh -c "npm install && npm run dev"
     networks:
       - skeleton-docker.network
     ports:
