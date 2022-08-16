@@ -1,8 +1,8 @@
 import axios from "axios";
 import { ZiggyVue } from 'ziggy';
-import route from 'ziggy';
+// import route from 'ziggy';
 import { Ziggy } from './ziggy';
-window.route = route;
+// window.route = route;
 window.Ziggy = Ziggy;
 
 export const $http = axios.create({

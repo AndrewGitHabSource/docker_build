@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
+import * as path from 'path';
 
 export default defineConfig({
     plugins: [
@@ -20,5 +21,13 @@ export default defineConfig({
         watch: {
             usePolling: true
         }
+    },
+    resolve: {
+        alias: {
+            // ziggy: path.resolve('vendor/tightenco/ziggy/src/js/Router'),
+        },
+    },
+    optimizeDeps: {
+        include: ["ziggy"],
     },
 });

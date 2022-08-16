@@ -4,19 +4,14 @@
 
         <h2>Hello World</h2>
 
-        <button @click="auth()">Login Google</button>
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
     export default {
         setup() {
-            const auth = () => {
-
-            };
-
             return {
-                auth,
             }
         }
     }

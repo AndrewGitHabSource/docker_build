@@ -15,15 +15,15 @@ class AuthController extends Controller
     }
 
     public function callback() {
-        $githubUser = Socialite::driver('google')->user();
+        $googleUser = Socialite::driver('google')->user();
 
         $user = User::updateOrCreate([
-            'google_id' => $githubUser->id,
+            'google_id' => $googleUser->id,
         ], [
-            'name' => $githubUser->name,
-            'email' => $githubUser->email,
-            'google_token' => $githubUser->token,
-            'google_refresh_token' => $githubUser->refreshToken,
+            'name' => $googleUser->name,
+            'email' => $googleUser->email,
+            'token' => $googleUser->token,
+            'refresh_token' => $googleUser->refreshToken,
         ]);
 
         Auth::login($user);
