@@ -67,3 +67,18 @@ services:
       - mysql
     networks:
       - skeleton-docker.network
+
+  frontend:
+    image: node:current-alpine
+    user: ${UID}:${UID}
+    working_dir: /home/node/app
+    volumes:
+      - ./public_html:/home/node/app
+    environment:
+      NODE_ENV: development
+    command: "npm run dev"
+    networks:
+      - skeleton-docker.network
+    ports:
+      - "3331:3331"
+    tty: true
