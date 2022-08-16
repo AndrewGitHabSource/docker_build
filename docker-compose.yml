@@ -76,7 +76,8 @@ services:
       - ./public_html:/home/node/app
     environment:
       NODE_ENV: development
-    command: sh -c "npm install && npm run dev"
+      CHOKIDAR_USEPOLLING: 1
+    command: sh -c "npm install && npm run watch"
     networks:
       - network
     ports:
