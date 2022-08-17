@@ -25,6 +25,8 @@ export default {
             try {
                 await loginGoogle(authResponseData);
 
+                console.log($auth);
+
                 notify({
                     title: "Authorization Success",
                     text: "You have been logged in!",
