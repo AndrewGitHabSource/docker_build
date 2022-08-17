@@ -6,3 +6,7 @@ use App\Http\Controllers as Controllers;
 Route::get('/auth/redirect', [Controllers\AuthController::class, 'redirect'])->name('redirect');
 
 Route::get('/auth/callback', [Controllers\AuthController::class, 'callback'])->name('callback');
+
+Route::middleware(['auth'])->group(function(){
+    Route::get('/admin/profile', [Controllers\User\ProfileController::class, 'index']);
+});

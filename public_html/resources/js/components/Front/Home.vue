@@ -2,12 +2,16 @@
     <div class="container">
         <h1>Home</h1>
 
+        <div v-if="user">
+            <h4>Hello - {{user.name}}</h4>
+        </div>
+
         <button @click="useAuthProvider('google', Google)">Login Google</button>
     </div>
 </template>
 
 <script>
-import { inject } from "vue";
+import { inject, computed } from "vue";
 import { Google } from 'universal-social-auth';
 import { loginGoogle } from '../../endpoints.js';
 import { notify } from "@kyvg/vue3-notification";
@@ -16,16 +20,18 @@ import { notifyError } from "../../helpers/notify";
 export default {
     setup() {
         let $auth = inject('Oauth');
+        let store = inject("store");
         let authResponseData = {
             "code": '',
             "provider": '',
         };
+        const user = computed(() => store.getters.user);
 
         const socialLogin = async () => {
             try {
-                await loginGoogle(authResponseData);
+                let {data} = await loginGoogle(authResponseData);
 
-                console.log($auth);
+                store.commit('setUser', data);
 
                 notify({
                     title: "Authorization Success",
@@ -57,6 +63,7 @@ export default {
             socialLogin,
             useAuthProvider,
             Google,
+            user,
         }
     }
 }
