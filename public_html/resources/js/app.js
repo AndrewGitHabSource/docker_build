@@ -6,6 +6,7 @@ import * as ZiggyVue from '/vendor/tightenco/ziggy/dist/vue';
 import { routes } from './routes';
 import axios, { AxiosInstance } from 'axios';
 import { UniversalSocialauth } from 'universal-social-auth';
+import Notifications from '@kyvg/vue3-notification';
 
 const router = VueRouter.createRouter({
     mode: "history",
@@ -36,6 +37,7 @@ vue.config.globalProperties.$Oauth = Oauth;
 vue.config.globalProperties.$axios = axios;
 
 vue.use(ZiggyVue, Ziggy);
+vue.use(Notifications);
 vue.use(router);
 vue.provide('ZiggyVue', ZiggyVue);
 vue.provide('Oauth', Oauth);

@@ -2,6 +2,8 @@
     <div class="content">
         <h1>Application</h1>
 
+        <notifications />
+
         <h2>Hello World</h2>
 
         <router-view></router-view>

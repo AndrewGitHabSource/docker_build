@@ -1,6 +1,7 @@
 {
     "private": true,
     "dependencies": {
+        "@kyvg/vue3-notification": "^2.3.6",
         "universal-social-auth": "^0.2.6",
         "vue": "^3.2.37",
         "vue-router": "^4.1.3"

@@ -10,6 +10,7 @@
 import { inject } from "vue";
 import { Google } from 'universal-social-auth';
 import { loginGoogle } from '../../endpoints.js';
+import { notify } from "@kyvg/vue3-notification";
 
 export default {
     setup() {
@@ -20,7 +21,23 @@ export default {
         };
 
         const socialLogin = async () => {
-            await loginGoogle(authResponseData);
+            try {
+                await loginGoogle(authResponseData);
+
+                notify({
+                    title: "Authorization Success",
+                    text: "You have been logged in!",
+                    type: "success",
+                });
+            } catch (error) {
+                notify({
+                    title: "Authorization Error",
+                    text: error,
+                    type: "error",
+                });
+
+                console.log(error);
+            }
         };
 
         const useAuthProvider = (provider, proData) => {
@@ -30,8 +47,14 @@ export default {
                     authResponseData.provider = provider;
                     socialLogin();
                 }
-            }).catch((err) => {
-                console.log(err)
+            }).catch((error) => {
+                notify({
+                    title: "Authorization Error",
+                    text: error,
+                    type: "error",
+                });
+
+                console.log(error)
             })
         }
 

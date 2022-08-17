@@ -16,7 +16,6 @@ class AuthController extends Controller
 
     public function callback() {
         $googleUser = Socialite::driver('google')->stateless()->user();
-        dd($googleUser);
 
         $user = User::updateOrCreate([
             'google_id' => $googleUser->id,
@@ -24,9 +23,12 @@ class AuthController extends Controller
             'name' => $googleUser->name,
             'email' => $googleUser->email,
             'token' => $googleUser->token,
+            'avatar' => $googleUser->avatar,
             'refresh_token' => $googleUser->refreshToken,
         ]);
 
         Auth::login($user);
+
+        return response()->json($user);
     }
 }
