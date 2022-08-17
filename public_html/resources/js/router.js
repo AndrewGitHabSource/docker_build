@@ -1,8 +1,7 @@
 import Home from './components/Front/Home.vue';
 import User from './components/Profile/User.vue';
 import * as VueRouter from 'vue-router';
-import { createStore } from 'vuex';
-import storeData from './store/index';
+import store from './settings/store';
 
 const routes = [
     {
@@ -35,8 +34,6 @@ const router = VueRouter.createRouter({
     history: VueRouter.createWebHistory(),
     routes: routes,
 });
-
-const store = createStore(storeData);
 
 router.beforeEach((to, from, next) => {
     if (to.meta.middleware === "auth") {

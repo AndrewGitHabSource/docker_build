@@ -6,8 +6,7 @@ import router from './router';
 import axios from 'axios';
 import { UniversalSocialauth } from 'universal-social-auth';
 import Notifications from '@kyvg/vue3-notification';
-import { createStore } from 'vuex';
-import storeData from './store/index';
+import store from './settings/store';
 
 window.Ziggy = Ziggy;
 
@@ -21,8 +20,6 @@ const options = {
 }
 const Oauth = new UniversalSocialauth(axios, options);
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
-
-const store = createStore(storeData);
 
 const vue = createApp(Main);
 vue.config.globalProperties.$Oauth = Oauth;
