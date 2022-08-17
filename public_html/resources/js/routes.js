@@ -6,4 +6,11 @@ export const routes = [
         path: '/',
         component: Home,
     },
+    {
+        name: 'callback',
+        path: '/auth/google/callback',
+        component: {
+            template: '<div class="auth-component"></div>'
+        }
+    },
 ];

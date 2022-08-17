@@ -22,11 +22,6 @@ export default defineConfig({
             usePolling: true
         }
     },
-    resolve: {
-        alias: {
-            // ziggy: path.resolve('vendor/tightenco/ziggy/src/js/Router'),
-        },
-    },
     optimizeDeps: {
         include: ["ziggy"],
     },
