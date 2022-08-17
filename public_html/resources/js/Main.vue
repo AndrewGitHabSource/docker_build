@@ -1,10 +1,6 @@
 <template>
     <div class="content">
-        <h1>Application</h1>
-
         <notifications />
-
-        <h2>Hello World</h2>
 
         <router-view></router-view>
     </div>
@@ -19,7 +15,11 @@
     }
 </script>
 
-<style scoped>
+<style>
+    body {
+        background-color: rgb(21, 32, 43);
+    }
+
     h1 {
         font: 28px Verdana;
         text-align: center;
@@ -27,6 +27,8 @@
     }
 
     .content {
-        padding: 0 15px;
+        padding: 10px 15px;
+        width: 1248px;
+        margin: 0 auto;
     }
 </style>

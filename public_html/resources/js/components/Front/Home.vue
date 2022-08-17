@@ -1,12 +1,12 @@
 <template>
     <div class="container">
-        <h1>Home</h1>
+        <Menu/>
 
         <div v-if="user">
             <h4>Hello - {{user.name}}</h4>
         </div>
 
-        <button @click="useAuthProvider('google', Google)">Login Google</button>
+        <button class="login" @click="useAuthProvider('google', Google)">Login Google</button>
     </div>
 </template>
 
@@ -16,8 +16,12 @@ import { Google } from 'universal-social-auth';
 import { loginGoogle } from '../../endpoints.js';
 import { notify } from "@kyvg/vue3-notification";
 import { notifyError } from "../../helpers/notify";
+import Menu from "./Menu.vue";
 
 export default {
+    components: {
+        Menu,
+    },
     setup() {
         let $auth = inject('Oauth');
         let store = inject("store");
@@ -70,5 +74,21 @@ export default {
 </script>
 
 <style scoped>
-
+    .login {
+        background-color: rgb(29, 155, 240);
+        color: #fff;
+        box-shadow: rgba(0, 0, 0, 0.08) 0 8px 28px;
+        transition-duration: 0.2s;
+        transition-property: background-color, box-shadow;
+        width: 20%;
+        min-height: 52px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        font: 17px TwitterChirp;
+        cursor: pointer;
+        border-radius: 100px;
+    }
 </style>
