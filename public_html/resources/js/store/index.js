@@ -1,4 +1,4 @@
-import { $http } from '../api.js';
+import createPersistedState from "vuex-persistedstate";
 
 export default {
     state() {
@@ -18,6 +18,10 @@ export default {
 
         getToken(state) {
             return state.user ? state.user.token : null
+        },
+
+        isAuthenticated(state) {
+            return !!state.user;
         }
     },
 
@@ -27,6 +31,5 @@ export default {
         }
     },
 
-    actions: {
-    },
+    plugins: [createPersistedState()],
 }

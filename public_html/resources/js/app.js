@@ -1,20 +1,13 @@
 import { createApp } from 'vue';
 import Main from './Main.vue';
-import * as VueRouter from 'vue-router';
 import { Ziggy } from './ziggy';
 import * as ZiggyVue from '/vendor/tightenco/ziggy/dist/vue';
-import { routes } from './routes';
+import router from './router';
 import axios from 'axios';
 import { UniversalSocialauth } from 'universal-social-auth';
 import Notifications from '@kyvg/vue3-notification';
 import { createStore } from 'vuex';
 import storeData from './store/index';
-
-const router = VueRouter.createRouter({
-    mode: "history",
-    history: VueRouter.createWebHistory(),
-    routes,
-});
 
 window.Ziggy = Ziggy;
 

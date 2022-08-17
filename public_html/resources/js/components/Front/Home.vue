@@ -91,4 +91,8 @@ export default {
         cursor: pointer;
         border-radius: 100px;
     }
+
+    h4 {
+        color: #fff;
+    }
 </style>
