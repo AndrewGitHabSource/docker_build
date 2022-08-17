@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\JsonResponse;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\Cache;
 
 use App\Http\Controllers\Controller as Controller;
 
@@ -14,7 +16,7 @@ class AuthController extends Controller
         return Socialite::driver('google')->redirect();
     }
 
-    public function callback() {
+    public function callback(): JsonResponse {
         $googleUser = Socialite::driver('google')->stateless()->user();
 
         $user = User::updateOrCreate([
@@ -29,6 +31,16 @@ class AuthController extends Controller
 
         Auth::login($user);
 
+        $this->setCache($user, $googleUser->id);
+
         return response()->json($user);
+    }
+
+    private function setCache(User $user, string $id): void {
+        Cache::put($id, $user, now()->addMinutes(15));
+    }
+
+    private function getCache($key) {
+        return Cache::get($key);
     }
 }

@@ -4,7 +4,7 @@ import * as VueRouter from 'vue-router';
 import { Ziggy } from './ziggy';
 import * as ZiggyVue from '/vendor/tightenco/ziggy/dist/vue';
 import { routes } from './routes';
-import axios, { AxiosInstance } from 'axios';
+import axios from 'axios';
 import { UniversalSocialauth } from 'universal-social-auth';
 import Notifications from '@kyvg/vue3-notification';
 
@@ -27,15 +27,10 @@ const options = {
 const Oauth = new UniversalSocialauth(axios, options);
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 
-console.log(axios.defaults.headers);
-
 const vue = createApp(Main);
-
-vue.use(Oauth);
-
 vue.config.globalProperties.$Oauth = Oauth;
 vue.config.globalProperties.$axios = axios;
-
+vue.use(Oauth);
 vue.use(ZiggyVue, Ziggy);
 vue.use(Notifications);
 vue.use(router);

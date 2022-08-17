@@ -11,6 +11,7 @@ import { inject } from "vue";
 import { Google } from 'universal-social-auth';
 import { loginGoogle } from '../../endpoints.js';
 import { notify } from "@kyvg/vue3-notification";
+import { notifyError } from "../../helpers/notify";
 
 export default {
     setup() {
@@ -30,11 +31,7 @@ export default {
                     type: "success",
                 });
             } catch (error) {
-                notify({
-                    title: "Authorization Error",
-                    text: error,
-                    type: "error",
-                });
+                notifyError(error);
 
                 console.log(error);
             }
@@ -48,11 +45,7 @@ export default {
                     socialLogin();
                 }
             }).catch((error) => {
-                notify({
-                    title: "Authorization Error",
-                    text: error,
-                    type: "error",
-                });
+                notifyError(error);
 
                 console.log(error)
             })
