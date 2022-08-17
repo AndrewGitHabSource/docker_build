@@ -87,7 +87,7 @@ export default {
         align-items: center;
         justify-content: center;
         border: none;
-        font: 17px TwitterChirp;
+        font: 700 17px TwitterChirp;
         cursor: pointer;
         border-radius: 100px;
     }
