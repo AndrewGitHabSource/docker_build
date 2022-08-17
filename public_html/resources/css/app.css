@@ -1,21 +1,21 @@
 @font-face {
     font-family: "TwitterChirp";
     src: local('TwitterChirp'), url(../assets/fonts/Chirp/chirp_web.ttf) format('truetype');
-    font-style: normal;
+    src: local('TwitterChirp'), url(../assets/fonts/Chirp/chirp_web.woff2) format('woff2');
     font-weight: 400;
 }
 
 @font-face {
     font-family: "TwitterChirp";
     src: local('TwitterChirp'), url(../assets/fonts/Chirp/chirp_web_medium.ttf) format('truetype');
-    font-style: normal;
+    src: local('TwitterChirp'), url(../assets/fonts/Chirp/chirp_medium.woff2) format('woff2');
     font-weight: 500;
 }
 
 @font-face {
     font-family: "TwitterChirp";
     src: local('TwitterChirp'), url(../assets/fonts/Chirp/chirp_web_bold.ttf) format('truetype');
-    font-style: normal;
+    src: local('TwitterChirp'), url(../assets/fonts/Chirp/chirp_bold.woff2) format('woff2');
     font-weight: 700;
 }
 
