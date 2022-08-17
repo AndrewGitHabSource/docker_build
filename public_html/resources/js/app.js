@@ -11,6 +11,8 @@ const router = VueRouter.createRouter({
     routes,
 });
 
+window.Ziggy = Ziggy;
+
 const vue = createApp(Main);
 
 vue.use(ZiggyVue, Ziggy);
