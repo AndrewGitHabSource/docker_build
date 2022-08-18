@@ -6,3 +6,7 @@ export const loginGoogle = async (data) => {
         "params": {...data},
     });
 }
+
+export const logoutUser = async () => {
+    return await $http.get(Ziggy.routes.logout.uri);
+}

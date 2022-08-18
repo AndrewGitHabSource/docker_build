@@ -7,6 +7,8 @@ Route::get('/auth/redirect', [Controllers\AuthController::class, 'redirect'])->n
 
 Route::get('/auth/callback', [Controllers\AuthController::class, 'callback'])->name('callback');
 
+Route::get('/auth/logout', [Controllers\AuthController::class, 'logout'])->name('logout');
+
 Route::middleware(['auth'])->group(function() {
     Route::get('/admin/profile', [Controllers\User\ProfileController::class, 'index']);
 });
