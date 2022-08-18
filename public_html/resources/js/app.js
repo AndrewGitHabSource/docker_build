@@ -7,6 +7,8 @@ import axios from 'axios';
 import { UniversalSocialauth } from 'universal-social-auth';
 import Notifications from '@kyvg/vue3-notification';
 import store from './settings/store';
+import ElementPlus from 'element-plus';
+import 'element-plus/dist/index.css';
 
 window.Ziggy = Ziggy;
 
@@ -29,6 +31,7 @@ vue.use(ZiggyVue, Ziggy);
 vue.use(Notifications);
 vue.use(router);
 vue.use(store);
+vue.use(ElementPlus)
 vue.provide('store', store);
 vue.provide('router', router);
 vue.provide('ZiggyVue', ZiggyVue);

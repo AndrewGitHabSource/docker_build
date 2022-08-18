@@ -25,4 +25,9 @@ export default defineConfig({
     optimizeDeps: {
         include: ["ziggy"],
     },
+    build: {
+        chunkSizeWarningLimit: 2048,
+        assetsInlineLimit: 2048,
+    },
+
 });

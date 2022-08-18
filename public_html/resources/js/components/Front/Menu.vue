@@ -36,13 +36,80 @@
             </li>
         </ul>
     </nav>
+
+    <div class="dropdown" v-if="isAuth">
+        <el-dropdown :hide-on-click="true" :trigger="'click'" :size="'large'" :popper-class="user-dropdown">
+            <div class="el-dropdown-link">
+                <div class="avatar">
+                    <img :src="user.avatar">
+                </div>
+
+                <div class="info">
+                    <span class="name">{{user.name}}</span>
+                    <span class="email">{{user.email}}</span>
+                </div>
+            </div>
+            <template #dropdown class="user-dropdown">
+                <div class="dropdown-content">
+                    <div class="dropdown-info">
+                        <div class="avatar">
+                            <img :src="user.avatar">
+                        </div>
+
+                        <div class="info">
+                            <span class="name">{{user.name}}</span>
+                            <span class="email">{{user.email}}</span>
+                        </div>
+                    </div>
+
+                    <el-dropdown-menu class="dropdown-menu">
+                        <el-dropdown-item>{{ user.name }}</el-dropdown-item>
+                        <el-dropdown-item>Logout</el-dropdown-item>
+                    </el-dropdown-menu>
+                </div>
+            </template>
+        </el-dropdown>
+    </div>
+    <Login v-else @login="isUserLogin"/>
 </template>
 
 <script>
-    export default {
-        setup() {
-            return {
+    import Login from "./Login.vue";
+    import {computed, inject, onMounted, ref} from 'vue';
 
+    export default {
+        components: {
+            Login,
+        },
+
+        setup() {
+            const profileDropDown = ref(null);
+            let store = inject("store");
+            let isAuth = ref(false);
+            const user = computed(() => store.getters.user);
+
+            const isUserLogin = (event) => {
+                if(event) {
+                    checkAuth();
+                }
+            };
+
+            const show = () => {
+                profileDropDown.value.handleOpen();
+            }
+
+            const checkAuth = () => {
+                store.getters.isAuthenticated ? isAuth.value = true : isAuth.value = false;
+            }
+
+            onMounted(checkAuth);
+
+            return {
+                isUserLogin,
+                show,
+                user,
+                isAuth,
+                profileDropDown,
             }
         }
     }
@@ -86,5 +153,70 @@
         font-weight: 400;
         line-height: 24px;
         margin-left: 20px;
+    }
+
+    .el-dropdown {
+        width: 100%;
+    }
+
+    .el-dropdown-link {
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+
+    .avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 100px;
+        overflow: hidden;
+        margin-right: 3%;
+    }
+
+    .avatar img {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+    }
+
+    .info span {
+        display: block;
+        font-size: 15px;
+    }
+
+    .info .name {
+        color: rgb(247, 249, 249);
+        font-weight: 700;
+    }
+
+    .info .email {
+        color: rgb(139, 152, 165);
+        font-weight: 400;
+    }
+
+    .dropdown-content, .dropdown-menu {
+        background-color: rgb(21, 32, 43);
+    }
+
+    .dropdown-info {
+        width: 300px;
+        padding: 10px 10px;
+        display: flex;
+    }
+
+    .user-dropdown::v-deep(.is-light) {
+        border: none !important;
+    }
+
+    .user-dropdown {
+        border: none !important;
+    }
+
+    .user-dropdown {
+        border: none !important;
+    }
+
+    .el-popper.is-light {
+        border: none !important;
     }
 </style>
