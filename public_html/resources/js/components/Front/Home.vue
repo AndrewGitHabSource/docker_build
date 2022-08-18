@@ -58,7 +58,6 @@ export default {
                 router.push({name: 'user'});
             } catch (error) {
                 notifyError(error);
-
                 console.log(error);
             }
         };
@@ -72,7 +71,6 @@ export default {
                 }
             }).catch((error) => {
                 notifyError(error);
-
                 console.log(error)
             })
         }
@@ -118,6 +116,10 @@ export default {
         font: 700 17px TwitterChirp;
         cursor: pointer;
         border-radius: 100px;
+    }
+
+    .login:hover {
+        background-color: rgb(26, 140, 216);
     }
 
     h4 {

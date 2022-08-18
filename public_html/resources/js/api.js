@@ -1,6 +1,5 @@
 import axios from "axios";
 import { Ziggy } from './ziggy';
-import * as ZiggyVue from '/vendor/tightenco/ziggy/dist/vue';
 
 export const $http = axios.create({
     "baseURL": Ziggy.url,

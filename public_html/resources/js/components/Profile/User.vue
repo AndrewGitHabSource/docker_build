@@ -6,7 +6,7 @@
 
 <script>
 
-import { computed, inject, onMounted } from "vue";
+import { computed, inject } from "vue";
 
 export default {
     setup() {

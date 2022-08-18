@@ -16,7 +16,7 @@ const options = {
             clientId: import.meta.env.VITE_GOOGLE_CLIENT_ID,
             redirectUri: import.meta.env.VITE_REDIRECT,
         },
-    }
+    },
 }
 const Oauth = new UniversalSocialauth(axios, options);
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
