@@ -13,8 +13,8 @@ window.Ziggy = Ziggy;
 const options = {
     providers: {
         google: {
-            clientId: '246513807134-p9e3q6aapg87ejabp2qnc7cmtdq1kqbi.apps.googleusercontent.com',
-            redirectUri: 'http://localhost/auth/redirect',
+            clientId: import.meta.env.VITE_GOOGLE_CLIENT_ID,
+            redirectUri: import.meta.env.VITE_REDIRECT,
         },
     }
 }
