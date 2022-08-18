@@ -58,14 +58,18 @@
             <template #dropdown>
                 <div class="dropdown-content">
                     <div class="dropdown-info">
-                        <div class="avatar">
-                            <img :src="user.avatar">
+                        <div>
+                            <div class="avatar dropdown-avatar">
+                                <img :src="user.avatar">
+                            </div>
+
+                            <div class="info">
+                                <span class="name">{{user.name}}</span>
+                                <span class="email">{{user.email}}</span>
+                            </div>
                         </div>
 
-                        <div class="info">
-                            <span class="name">{{user.name}}</span>
-                            <span class="email">{{user.email}}</span>
-                        </div>
+                        <svg viewBox="0 0 24 24" aria-hidden="true" class="r-1cvl2hr r-4qtqp9 r-yyyyoo r-1q142lx r-1xvli5t r-19u6a5r r-dnmrzs r-bnwqim r-1plcrui r-lrvibr"><g><path d="M9 20c-.264 0-.52-.104-.707-.293l-4.785-4.785c-.39-.39-.39-1.023 0-1.414s1.023-.39 1.414 0l3.946 3.945L18.075 4.41c.32-.45.94-.558 1.395-.24.45.318.56.942.24 1.394L9.817 19.577c-.17.24-.438.395-.732.42-.028.002-.057.003-.085.003z"></path></g></svg>
                     </div>
 
                     <el-dropdown-menu class="dropdown-menu">
@@ -188,6 +192,7 @@
 
     .el-dropdown {
         width: 100%;
+        cursor: pointer;
     }
 
     .el-dropdown-link {
@@ -231,23 +236,40 @@
 
     .dropdown-info {
         width: 300px;
-        padding: 10px 10px;
         display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid rgb(56, 68, 77);
+        padding: 12px 16px;
     }
 
-    .user-dropdown::v-deep(.is-light) {
-        border: none !important;
+    .dropdown-info > div {
+        display: flex;
+        width: 90%;
     }
 
-    .user-dropdown {
-        border: none !important;
+    .dropdown-menu {
+        padding: 0 0 12px 0;
     }
 
-    .user-dropdown {
-        border: none !important;
+    .dropdown-menu ::v-deep(li) {
+        color: #fff;
+        padding: 16px 16px;
     }
 
-    ::v-deep(.el-popper.is-light) {
-        border: none !important;
+    .dropdown-menu ::v-deep(li):hover {
+        background: rgb(30, 39, 50);
+        color: #fff;
+    }
+
+    .dropdown-avatar {
+        width: 48px;
+        height: 48px;
+    }
+
+    .dropdown-info svg {
+        fill: rgb(29, 155, 240);
+        width: 14px;
+        height: 14px;
     }
 </style>

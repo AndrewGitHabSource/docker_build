@@ -37,3 +37,12 @@ h1 {
     width: 1248px;
     margin: 0 auto;
 }
+
+.user-dropdown.el-popper.is-light {
+    border: none;
+    box-shadow: rgba(136, 153, 166, 0.2) 0 0 15px, rgba(136, 153, 166, 0.15) 0 0 3px 1px;
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: rgb(21, 32, 43);
+    cursor: pointer;
+}
