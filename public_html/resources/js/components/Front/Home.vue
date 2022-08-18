@@ -1,12 +1,14 @@
 <template>
     <div class="container">
-        <Menu/>
+        <aside class="left-side">
+            <Menu/>
 
-        <div v-if="user">
-            <h4>Hello - {{user.name}}</h4>
-        </div>
+            <button class="login" @click="useAuthProvider('google', Google)">Login Google</button>
+        </aside>
 
-        <button class="login" @click="useAuthProvider('google', Google)">Login Google</button>
+        <section class="posts">
+            <Post/>
+        </section>
     </div>
 </template>
 
@@ -17,10 +19,12 @@ import { loginGoogle } from '../../endpoints.js';
 import { notify } from "@kyvg/vue3-notification";
 import { notifyError } from "../../helpers/notify";
 import Menu from "./Menu.vue";
+import Post from "./Post.vue";
 
 export default {
     components: {
         Menu,
+        Post,
     },
     setup() {
         let $auth = inject('Oauth');
@@ -74,13 +78,27 @@ export default {
 </script>
 
 <style scoped>
+    .container {
+        display: flex;
+    }
+
+    .left-side {
+        width: 20%;
+    }
+
+    .posts {
+        width: 50%;
+        border-left: 1px solid rgb(56, 68, 77);
+        border-right: 1px solid rgb(56, 68, 77);
+    }
+
     .login {
+        width: 87%;
         background-color: rgb(29, 155, 240);
         color: #fff;
         box-shadow: rgba(0, 0, 0, 0.08) 0 8px 28px;
         transition-duration: 0.2s;
         transition-property: background-color, box-shadow;
-        width: 20%;
         min-height: 52px;
         text-align: center;
         display: flex;

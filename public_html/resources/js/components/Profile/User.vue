@@ -1,8 +1,6 @@
 <template>
-    <div class="container">
-        <div v-if="user">
-            <h4>Hello - {{user.name}}</h4>
-        </div>
+    <div v-if="user">
+        <h4>Hello - {{user.name}}</h4>
     </div>
 </template>
 

@@ -23,6 +23,7 @@ body {
     background-color: rgb(21, 32, 43);
     font-family: TwitterChirp;
     font-weight: 500;
+    margin: 0;
 }
 
 h1 {
@@ -32,7 +33,7 @@ h1 {
 }
 
 .content {
-    padding: 10px 15px;
+    padding: 0 15px;
     width: 1248px;
     margin: 0 auto;
 }
