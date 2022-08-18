@@ -30,6 +30,7 @@ vue.use(Notifications);
 vue.use(router);
 vue.use(store);
 vue.provide('store', store);
+vue.provide('router', router);
 vue.provide('ZiggyVue', ZiggyVue);
 vue.provide('Oauth', Oauth);
 vue.mount('#app');

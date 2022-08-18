@@ -8,6 +8,13 @@
 
         <section class="posts">
             <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
         </section>
     </div>
 </template>
@@ -27,6 +34,7 @@ export default {
         Post,
     },
     setup() {
+        let router = inject("router");
         let $auth = inject('Oauth');
         let store = inject("store");
         let authResponseData = {
@@ -46,6 +54,8 @@ export default {
                     text: "You have been logged in!",
                     type: "success",
                 });
+
+                router.push({name: 'user'});
             } catch (error) {
                 notifyError(error);
 
