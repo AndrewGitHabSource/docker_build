@@ -19,6 +19,7 @@ export default {
     components: {
         Post,
     },
+
     setup() {
         let store = inject("store");
         const user = computed(() => store.getters.user);

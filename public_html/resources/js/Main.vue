@@ -34,5 +34,6 @@
 
     .left-side {
         width: 20%;
+        margin-right: 2%;
     }
 </style>
