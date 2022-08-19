@@ -9,6 +9,8 @@ import Notifications from '@kyvg/vue3-notification';
 import store from './settings/store';
 import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css';
+import vScrollLook from './directives/vScrollLook';
+
 
 window.Ziggy = Ziggy;
 
@@ -24,6 +26,7 @@ const Oauth = new UniversalSocialauth(axios, options);
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 
 const vue = createApp(Main);
+vue.directive('scroll-look', vScrollLook);
 vue.config.globalProperties.$Oauth = Oauth;
 vue.config.globalProperties.$axios = axios;
 vue.use(Oauth);

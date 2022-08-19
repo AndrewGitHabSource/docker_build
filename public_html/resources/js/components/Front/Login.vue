@@ -2,6 +2,7 @@
     <button class="login" @click="useAuthProvider('google', Google)">Login Google</button>
 
     <div v-if="loading" v-loading="loading" class="login-loading"></div>
+    <div v-scroll-look:[loading]="loading"></div>
 </template>
 
 <script>
@@ -40,8 +41,6 @@
                 } catch (error) {
                     notifyError(error);
                     console.log(error);
-                } finally {
-                    loading.value = false;
                 }
             };
 
@@ -57,7 +56,9 @@
                 }).catch((error) => {
                     notifyError(error);
                     console.log(error)
-                })
+                }).finally(() => {
+                    loading.value = false;
+                });
             }
 
             return {
