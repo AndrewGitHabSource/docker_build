@@ -127,8 +127,9 @@
                         "user": null,
                     });
                     localStorage.removeItem('vuex');
-
                     checkAuth();
+
+                    router.push({name: 'home'});
                 } catch (error) {
                     notifyError(error);
                     console.log(error);
