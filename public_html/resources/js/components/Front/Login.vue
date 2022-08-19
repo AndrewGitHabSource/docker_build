@@ -1,9 +1,11 @@
 <template>
     <button class="login" @click="useAuthProvider('google', Google)">Login Google</button>
+
+    <div v-if="loading" v-loading="loading" class="login-loading"></div>
 </template>
 
 <script>
-    import { inject, computed } from "vue";
+    import { inject, computed, ref } from "vue";
     import { Google } from 'universal-social-auth';
     import { loginGoogle } from '../../endpoints.js';
     import { notify } from "@kyvg/vue3-notification";
@@ -13,7 +15,7 @@
         emits: ['login'],
 
         setup(props, {emit}) {
-            let router = inject("router");
+            let loading = ref(false);
             let $auth = inject('Oauth');
             let store = inject("store");
             let authResponseData = {
@@ -38,10 +40,14 @@
                 } catch (error) {
                     notifyError(error);
                     console.log(error);
+                } finally {
+                    loading.value = false;
                 }
             };
 
             const useAuthProvider = (provider, proData) => {
+                loading.value = true;
+
                 $auth.authenticate(provider, proData).then((response) => {
                     if (response.code) {
                         authResponseData.code = response.code;
@@ -59,6 +65,7 @@
                 useAuthProvider,
                 Google,
                 user,
+                loading,
             }
         }
     }
@@ -85,5 +92,15 @@
 
     .login:hover {
         background-color: rgb(26, 140, 216);
+    }
+
+    .login-loading {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: rgba(0, 0, 0, 0.5);
+        top: 0;
+        left: 0;
+        overflow: hidden;
     }
 </style>
