@@ -10,3 +10,8 @@ export const loginGoogle = async (data) => {
 export const logoutUser = async () => {
     return await $http.get(Ziggy.routes.logout.uri);
 }
+
+export const savePost = async (post) => {
+    console.log(Ziggy.routes);
+    return await $http.post(Ziggy.routes["post.save"].uri, post);
+}

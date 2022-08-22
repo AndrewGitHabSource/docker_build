@@ -30,7 +30,8 @@ class AuthController extends Controller
                 'refresh_token' => $googleUser->refreshToken,
             ]);
 
-            Auth::login($user);
+            Auth::login($user, true);
+
         } catch (\Error $error) {
             return response()->json($error);
         }

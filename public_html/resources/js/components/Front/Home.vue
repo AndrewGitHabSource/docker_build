@@ -1,12 +1,6 @@
 <template>
     <section class="posts">
-        <Post/>
-        <Post/>
-        <Post/>
-        <Post/>
-        <Post/>
-        <Post/>
-        <Post/>
+        <AddPost/>
         <Post/>
     </section>
 </template>
@@ -14,10 +8,12 @@
 <script>
 import { inject, computed } from "vue";
 import Post from "./Post.vue";
+import AddPost from "./AddPost.vue";
 
 export default {
     components: {
         Post,
+        AddPost,
     },
 
     setup() {

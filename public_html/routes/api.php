@@ -11,4 +11,5 @@ Route::get('/auth/logout', [Controllers\AuthController::class, 'logout'])->name(
 
 Route::middleware(['auth'])->group(function() {
     Route::get('/admin/profile', [Controllers\User\ProfileController::class, 'index']);
+    Route::post('/post/save', [Controllers\PostController::class, 'save'])->name('post.save');
 });

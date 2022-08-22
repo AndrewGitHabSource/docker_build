@@ -7,3 +7,11 @@ export const notifyError = (error) => {
         type: "error",
     });
 }
+
+export const notifyErrorSavePost = (error) => {
+    notify({
+        title: "Server Error",
+        text: error,
+        type: "error",
+    });
+}
