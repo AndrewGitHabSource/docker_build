@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'paths' => ['*'],
+    'paths' => ['*', 'https://lh3.googleusercontent.com'],
 
     'allowed_methods' => ['*'],
 

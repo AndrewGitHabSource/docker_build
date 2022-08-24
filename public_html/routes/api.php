@@ -9,6 +9,8 @@ Route::get('/auth/callback', [Controllers\AuthController::class, 'callback'])->n
 
 Route::get('/auth/logout', [Controllers\AuthController::class, 'logout'])->name('logout');
 
+Route::get('/post/index', [Controllers\PostController::class, 'index'])->name('post.index');
+
 Route::middleware(['auth'])->group(function() {
     Route::get('/admin/profile', [Controllers\User\ProfileController::class, 'index']);
     Route::post('/post/save', [Controllers\PostController::class, 'save'])->name('post.save');

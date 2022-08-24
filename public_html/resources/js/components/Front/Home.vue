@@ -1,14 +1,16 @@
 <template>
-    <section class="posts">
-        <AddPost/>
-        <Post/>
+    <section v-loading="loading" class="posts">
+        <AddPost @save-post="savePost"/>
+
+        <Post v-for="post in posts.key" :key="post.id" :post="post"/>
     </section>
 </template>
 
 <script>
-import { inject, computed } from "vue";
+import { inject, computed, onMounted, reactive, ref } from "vue";
 import Post from "./Post.vue";
 import AddPost from "./AddPost.vue";
+import { getAllPosts } from "../../endpoints";
 
 export default {
     components: {
@@ -18,10 +20,36 @@ export default {
 
     setup() {
         let store = inject("store");
+        let loading = ref(false);
         const user = computed(() => store.getters.user);
+        let posts = reactive({
+            "key": {},
+        });
+
+        const getPosts = async () => {
+            try {
+                let {data} = await getAllPosts();
+                loading = true;
+
+                posts.key = data;
+            } catch (error) {
+                console.log(error);
+            } finally {
+                loading = false;
+            }
+        }
+
+        const savePost = () => {
+            getPosts();
+        }
+
+        onMounted(getPosts);
 
         return {
             user,
+            posts,
+            savePost,
+            loading,
         }
     }
 }

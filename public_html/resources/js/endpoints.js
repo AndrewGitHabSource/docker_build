@@ -7,6 +7,10 @@ export const loginGoogle = async (data) => {
     });
 }
 
+export const getAllPosts = async (data) => {
+    return await $http.get(Ziggy.routes["post.index"].uri);
+}
+
 export const logoutUser = async () => {
     return await $http.get(Ziggy.routes.logout.uri);
 }

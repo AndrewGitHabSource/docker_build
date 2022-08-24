@@ -11,7 +11,7 @@ class PostController extends Controller
     private $limit = 10;
 
     public function index() {
-        return response()->json(Post::take($this->limit)->get());
+        return response()->json(Post::with('user')->take($this->limit)->get());
     }
 
     public function save(Request $request) {

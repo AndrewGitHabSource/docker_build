@@ -13,15 +13,14 @@
 </template>
 
 <script>
-    import { inject, reactive } from "vue";
+    import { reactive } from "vue";
     import { savePost } from "../../endpoints";
     import { notifyErrorSavePost } from "../../helpers/notify";
 
     export default {
-        components: {
-        },
+        emits: ['login'],
 
-        setup() {
+        setup(props, {emit}) {
             let form = reactive({
                 "text": "",
             });
@@ -29,6 +28,7 @@
             const onSubmit = async () => {
                 try {
                     let {data} = await savePost(form);
+                    emit("save-post", true);
                 } catch (error) {
                     notifyErrorSavePost(error);
                 }
