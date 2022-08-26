@@ -28,14 +28,15 @@ export default {
 
         const getPosts = async () => {
             try {
+                loading.value = true;
+
                 let {data} = await getAllPosts();
-                loading = true;
 
                 posts.key = data;
             } catch (error) {
                 console.log(error);
             } finally {
-                loading = false;
+                loading.value = false;
             }
         }
 
@@ -86,5 +87,9 @@ export default {
 
     h4 {
         color: #fff;
+    }
+
+    .posts {
+        min-height: 400px;
     }
 </style>
