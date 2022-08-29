@@ -1,7 +1,6 @@
 import { $http } from "./api";
 import { Ziggy } from './ziggy';
 import { useQuery } from 'villus';
-import { useClient } from 'villus';
 import { useMutation } from 'villus';
 
 export const loginGoogle = async (data) => {
@@ -11,14 +10,11 @@ export const loginGoogle = async (data) => {
 }
 
 export const getAllPosts = () => {
-    useClient({
-        url: 'http://localhost/graphql',
-    });
-
     const AllPosts = `query AllPosts
         {
             posts {
-                text
+                id,
+                text,
                 user {
                    name,
                    avatar

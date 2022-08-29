@@ -29,7 +29,7 @@ class CreatePostMutation extends Mutation
         ];
     }
 
-    public function resolve($root, array $args)
+    public function resolve($root, array $args): Post
     {
         $post = new Post();
         $args['user_id'] = Auth::user()->id;

@@ -14,6 +14,7 @@
 
 <script>
     import Menu from "./components/Front/Menu.vue";
+    import { useClient } from 'villus';
 
     export default {
         components: {
@@ -21,6 +22,11 @@
         },
 
         setup() {
+            useClient({
+                url: 'http://localhost/graphql',
+                cachePolicy: 'network-only',
+            });
+
             return {
             }
         }

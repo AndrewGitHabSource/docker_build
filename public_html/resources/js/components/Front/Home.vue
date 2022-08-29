@@ -23,7 +23,7 @@ export default {
         let loading = ref(false);
         const user = computed(() => store.getters.user);
         let posts = reactive({
-            "key": {},
+            "key": [],
         });
 
         const getPosts = async () => {
@@ -31,8 +31,6 @@ export default {
                 loading.value = true;
 
                 let {data} = await getAllPosts();
-
-                console.log(data.value);
 
                 posts.key = data.value.posts;
             } catch (error) {
