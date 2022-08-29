@@ -1,5 +1,8 @@
 import { $http } from "./api";
 import { Ziggy } from './ziggy';
+import { useQuery } from 'villus';
+import { useClient } from 'villus';
+import { useMutation } from 'villus';
 
 export const loginGoogle = async (data) => {
     return await $http.get(Ziggy.routes.callback.uri, {
@@ -7,8 +10,29 @@ export const loginGoogle = async (data) => {
     });
 }
 
-export const getAllPosts = async (data) => {
-    return await $http.get(Ziggy.routes["post.index"].uri);
+export const getAllPosts = () => {
+    useClient({
+        url: 'http://localhost/graphql',
+    });
+
+    const AllPosts = `query AllPosts
+        {
+            posts {
+                text
+                user {
+                   name,
+                   avatar
+                }
+            }
+        }`;
+
+    return new Promise((resolve, reject) => {
+        const data = useQuery({
+            query: AllPosts,
+        });
+
+        resolve(data);
+    });
 }
 
 export const logoutUser = async () => {
@@ -16,6 +40,16 @@ export const logoutUser = async () => {
 }
 
 export const savePost = async (post) => {
-    console.log(Ziggy.routes);
-    return await $http.post(Ziggy.routes["post.save"].uri, post);
+    const createPost = `mutation createPostMutation($text: String!) {
+        createPost (text: $text) {
+           text
+        }
+    }`;
+
+    const { data, execute } = useMutation(createPost);
+    const variables = {
+        text: post.text,
+    };
+
+    await execute(variables);
 }

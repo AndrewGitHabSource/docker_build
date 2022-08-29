@@ -42,8 +42,6 @@ return [
     ],
 
     'types' => [
-        // ExampleType::class,
-        // ExampleRelationType::class,
         // \Rebing\GraphQL\Support\UploadType::class,
     ],
 
@@ -64,7 +62,7 @@ return [
     'simple_pagination_type' => \Rebing\GraphQL\Support\SimplePaginationType::class,
 
     'graphiql' => [
-        'prefix' => 'graphiql', // Do NOT use a leading slash
+        'prefix' => 'graphiql',
         'controller' => \Rebing\GraphQL\GraphQLController::class . '@graphiql',
         'middleware' => [],
         'view' => 'graphql::graphiql',
@@ -89,7 +87,6 @@ return [
 
     'execution_middleware' => [
         \Rebing\GraphQL\Support\ExecutionMiddleware\ValidateOperationParamsMiddleware::class,
-        // AutomaticPersistedQueriesMiddleware listed even if APQ is disabled, see the docs for the `'apq'` configuration
         \Rebing\GraphQL\Support\ExecutionMiddleware\AutomaticPersistedQueriesMiddleware::class,
         \Rebing\GraphQL\Support\ExecutionMiddleware\AddAuthUserContextValueMiddleware::class,
         // \Rebing\GraphQL\Support\ExecutionMiddleware\UnusedVariablesMiddleware::class,

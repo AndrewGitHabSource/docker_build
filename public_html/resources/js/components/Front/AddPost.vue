@@ -27,7 +27,7 @@
 
             const onSubmit = async () => {
                 try {
-                    let {data} = await savePost(form);
+                    await savePost(form);
                     emit("save-post", true);
                 } catch (error) {
                     notifyErrorSavePost(error);

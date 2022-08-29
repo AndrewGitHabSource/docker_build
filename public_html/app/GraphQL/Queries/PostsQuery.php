@@ -22,6 +22,6 @@ class PostsQuery extends Query
 
     public function resolve($root, $args)
     {
-        return Post::with('user')->get();
+        return Post::with('user')->orderBy('created_at', 'DESC')->get();
     }
 }

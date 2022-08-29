@@ -3,6 +3,7 @@
 namespace App\GraphQL\Mutations;
 
 use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 use Rebing\GraphQL\Support\Mutation;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Facades\GraphQL;
@@ -28,12 +29,13 @@ class CreatePostMutation extends Mutation
         ];
     }
 
-    public function resolve($root, $args)
+    public function resolve($root, array $args)
     {
-        $book = new Post();
-        $book->fill($args);
-        $book->save();
+        $post = new Post();
+        $args['user_id'] = Auth::user()->id;
+        $post->fill($args);
+        $post->save();
 
-        return $book;
+        return $post;
     }
 }

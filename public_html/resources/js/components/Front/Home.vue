@@ -32,7 +32,9 @@ export default {
 
                 let {data} = await getAllPosts();
 
-                posts.key = data;
+                console.log(data.value);
+
+                posts.key = data.value.posts;
             } catch (error) {
                 console.log(error);
             } finally {
