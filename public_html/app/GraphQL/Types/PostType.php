@@ -30,6 +30,13 @@ class PostType extends GraphQLType
                 'type'          => GraphQL::type('User'),
                 'description'   => 'User',
             ],
+            'user_name' => [
+                'type' => Type::string(),
+                'description' => 'The user name of user',
+                'resolve' => function($root, array $args) {
+                    return stristr($root->user->email, '@', true);
+                }
+            ],
         ];
     }
 }

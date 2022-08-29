@@ -3,7 +3,7 @@
 namespace App\GraphQL\Mutations;
 
 use App\Models\Post;
-use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 use Rebing\GraphQL\Support\Mutation;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Facades\GraphQL;
@@ -29,10 +29,10 @@ class CreatePostMutation extends Mutation
         ];
     }
 
-    public function resolve($root, array $args): Post
+    public function resolve($root, array $args, User $context): Post
     {
         $post = new Post();
-        $args['user_id'] = Auth::user()->id;
+        $args['user_id'] = $context->id;
         $post->fill($args);
         $post->save();
 
