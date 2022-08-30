@@ -25,24 +25,22 @@ return [
                 'post' => App\GraphQL\Queries\PostQuery::class,
                 'posts' => App\GraphQL\Queries\PostsQuery::class,
             ],
+            'middleware' => null,
+            'method' => ['GET', 'POST'],
+            'execution_middleware' => null,
+        ],
+        'access' => [
             'mutation' => [
                 'createPost' => App\GraphQL\Mutations\CreatePostMutation::class,
             ],
-            'types' => [
-                'Post' => App\GraphQL\Types\PostType::class,
-                'User' => App\GraphQL\Types\UserType::class,
-            ],
-
-            'middleware' => null,
-
-            'method' => ['GET', 'POST'],
-
-            'execution_middleware' => null,
+            'middleware' => ['auth.graph'],
+            'method' => ['POST', 'GET'],
         ],
     ],
 
     'types' => [
-        // \Rebing\GraphQL\Support\UploadType::class,
+        'Post' => App\GraphQL\Types\PostType::class,
+        'User' => App\GraphQL\Types\UserType::class,
     ],
 
     'lazyload_types' => true,

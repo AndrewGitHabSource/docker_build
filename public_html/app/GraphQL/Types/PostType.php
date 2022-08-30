@@ -6,6 +6,7 @@ use App\Models\Post;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Type as GraphQLType;
 use Rebing\GraphQL\Support\Facades\GraphQL;
+use App\GraphQL\Fields\FormatDate;
 
 class PostType extends GraphQLType
 {
@@ -37,6 +38,9 @@ class PostType extends GraphQLType
                     return stristr($root->user->email, '@', true);
                 }
             ],
+            'created' => new FormatDate([
+                'alias' => 'created_at',
+            ]),
         ];
     }
 }

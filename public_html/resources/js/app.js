@@ -10,7 +10,12 @@ import store from './settings/store';
 import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css';
 import vScrollLook from './directives/vScrollLook';
+import { createClient } from 'villus';
 
+const client = createClient({
+    url: '/graphql',
+    cachePolicy: 'network-only',
+});
 
 window.Ziggy = Ziggy;
 
@@ -34,7 +39,9 @@ vue.use(ZiggyVue, Ziggy);
 vue.use(Notifications);
 vue.use(router);
 vue.use(store);
-vue.use(ElementPlus)
+vue.use(ElementPlus);
+vue.use(client);
+vue.provide('client', client);
 vue.provide('store', store);
 vue.provide('router', router);
 vue.provide('ZiggyVue', ZiggyVue);

@@ -3,11 +3,13 @@
 namespace App\GraphQL\Queries;
 
 use App\Models\Post;
-use App\Models\User;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Query;
 use Illuminate\Database\Eloquent\Collection;
+use GraphQL\Type\Definition\ResolveInfo;
+use Rebing\GraphQL\Support\SelectFields;
+use Closure;
 
 class PostsQuery extends Query
 {
@@ -21,8 +23,12 @@ class PostsQuery extends Query
         return Type::listOf(GraphQL::type('Post'));
     }
 
-    public function resolve(): Collection
+    public function resolve($root, array $args, $context, ResolveInfo $info, Closure $getSelectFields): Collection
     {
-        return Post::with('user')->orderBy('created_at', 'DESC')->get();
+        $fields = $getSelectFields();
+        $select = $fields->getSelect();
+        $with = $fields->getRelations();
+
+        return Post::select($select)->with($with)->orderBy('created_at', 'DESC')->get();
     }
 }
